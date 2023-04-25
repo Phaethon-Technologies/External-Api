@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart":"nodemon server.js",
+    "devStart": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,7 +12,8 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
