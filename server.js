@@ -22,8 +22,8 @@ const posts = [
     }
 ]
 
-app.get('/posts',(req,res)=> {
-res.json(posts)
+app.get('/posts',  authToken , (req,res)=> {
+res.json(posts.filter(post => post.username === req.user.name))
 })
 
 
@@ -76,4 +76,17 @@ app.post('/users/login', async (req,res)=>{
     }
 })
 
+
+
+function authToken(req,res,next){
+const authHeader = req.headers['authorization']
+const token = authHeader && authHeader.split(' ')[1]    
+if(token == null) return res.sendStatus(401)
+
+jwt.verify(token, process.env.ACESS_TOKEN_SECRET, (err,user)=>{
+    if(err) return res.sendStatus(403)
+    req.user = user
+    next()
+})
+}
 app.listen(3000)
