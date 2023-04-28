@@ -16,6 +16,7 @@ const posts = [
         username:"Vishnu",
         title:"Post 1"
     },
+
     {
     username:"Arun",
     title:"Post 2"
@@ -26,7 +27,16 @@ app.get('/posts',  authToken , (req,res)=> {
 res.json(posts.filter(post => post.username === req.user.name))
 })
 
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVmlzaG51IiwiaWF0IjoxNjgyNjgzOTg5fQ.Lhi5n4t5qlBwhLcn75Sm7kDpV95nG-vfTkHYhzHJtls';
 
+fetch('http://localhost:3000/posts', {
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
 app.post('/login',(req,res)=>{
     //auth user
     const username = req.body.username
