@@ -1,0 +1,33 @@
+{
+  "initiators": [
+    {
+      "type": "runlog",
+      "params": {
+        "address": "0x8Ae2A6B36e6Ee3a86276Ae9c2eAccb8209fDCc26"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "HTTPGet",
+      "params": {
+        "url": "https://externaldataapi.onrender.com/",
+        "queryParams": {
+          "api_key": ""
+        }
+      }
+    },
+    {
+      "type": "JSONParse",
+      "params": {
+        "path": ["data", "value"]
+      }
+    },
+    {
+      "type": "EthBytes32"
+    },
+    {
+      "type": "EthTx"
+    }
+  ]
+}
